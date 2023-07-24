@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* Only imports should be used here, no direct css code - use files in folders */
+
+// Abstracts
+@import "abstracts/abstracts-dir";
+
+// Base Imports
+@import 'base/_base-dir.scss';
+
+// Components
+@import "components/components-dir";
+
+// Layout
+@import "layout/layout-dir";
+
+// Theme Specific
+@import "themes/themes-dir";
+
+// Pages
+@import "pages/pages-dir";
+
+// Media Queries
+@import "layout/media-queries";
+
+/* Pages Imports - If you need page specific styles */
+

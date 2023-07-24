@@ -1,0 +1,23 @@
+{
+  "name": "thedd-package-setup",
+  "version": "1.0.0",
+  "description": "The Digital Dev Packages Setup",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass": "^1.63.6"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ],
+  "author": "",
+  "license": "ISC"
+}
