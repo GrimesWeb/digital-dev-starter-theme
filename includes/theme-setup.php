@@ -71,3 +71,10 @@ function thdd_theme_support()
     */
 }
 add_action('after_setup_theme', 'thdd_theme_support');
+
+/* Register Nav Menu Locations */
+register_nav_menus([
+    'top-menu' => esc_html( 'Top Header Menu', 'thedd' )
+]);
+
+/* Register Widget Areas */

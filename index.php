@@ -35,8 +35,10 @@ if (!defined('ABSPATH')) {
         </section>
     </main>
     <!-- #main -->
+
 </div>
 <!-- #primary -->
-
+<?php // get_sidebar(); ?>
+<!-- #sidebar -->
 <!-- Nothing below here -->
 <?php get_footer(); ?>
