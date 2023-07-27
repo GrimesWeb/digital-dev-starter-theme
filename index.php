@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
 
 </div>
 <!-- #primary -->
-<?php // get_sidebar(); ?>
+<?php get_sidebar(); ?>
 <!-- #sidebar -->
 <!-- Nothing below here -->
 <?php get_footer(); ?>

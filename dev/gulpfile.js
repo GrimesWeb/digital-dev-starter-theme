@@ -39,3 +39,5 @@ exports.default = () => (
 		.pipe(gulp.dest('dist'))
 );
 */
+
+gulp watch
