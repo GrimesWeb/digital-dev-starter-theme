@@ -1,4 +1,6 @@
 <?php
+/** Template used for archives (cats, tags, etc.) */
+
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
@@ -7,6 +9,7 @@ if (!defined('ABSPATH')) {
 <?php get_header(); ?>
 <div id="primary">
     <main id="main" class="site-main" role="main">
+        <h1><?php the_archive_title( ); ?></h1>
         <section>
 
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -17,8 +20,6 @@ if (!defined('ABSPATH')) {
             <?php endif; ?>
 
         </section>
-
-        <?php echo paginate_links(); ?>
     </main>
     <!-- #main -->
 
