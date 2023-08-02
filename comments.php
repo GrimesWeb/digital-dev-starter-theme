@@ -5,85 +5,56 @@ if (!defined('ABSPATH')) {
 ?>
 
 <?php
-/*
-* Template taken from WP directly
-*/
 
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password,
- * return early without loading the comments.
+/**
+ * The template for displaying the comemnts.
+ *
+ * The section of the post or page that includes the comments and the form.
+ *
  */
-if ( post_password_required() ) {
-	return;
-}
 
-$twenty_twenty_one_comment_count = get_comments_number();
+
+if ( post_password_required() )
+    return;
 ?>
 
-<div id="comments" class="comments-area default-max-width <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">
+<div id="comments" class="comments-area">
 
-	<?php
-	if ( have_comments() ) :
-		?>
-		<h2 class="comments-title">
-			<?php if ( '1' === $twenty_twenty_one_comment_count ) : ?>
-				<?php esc_html_e( '1 comment', 'twentytwentyone' ); ?>
-			<?php else : ?>
-				<?php
-				printf(
-					/* translators: %s: Comment count number. */
-					esc_html( _nx( '%s comment', '%s comments', $twenty_twenty_one_comment_count, 'Comments title', 'twentytwentyone' ) ),
-					esc_html( number_format_i18n( $twenty_twenty_one_comment_count ) )
-				);
-				?>
-			<?php endif; ?>
-		</h2><!-- .comments-title -->
+    <?php if ( have_comments() ) : ?>
+        <h2 class="comments-title">
+            <?php
+                printf( _nx( 'One thought on "%2$s"', '%1$s thoughts on "%2$s"', get_comments_number(), 'comments title', 'projectsengine' ),
+                    number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
+            ?>
+        </h2>
 
-		<ol class="comment-list">
-			<?php
-			wp_list_comments(
-				array(
-					'avatar_size' => 60,
-					'style'       => 'ol',
-					'short_ping'  => true,
-				)
-			);
-			?>
-		</ol><!-- .comment-list -->
+        <ol class="comment-list">
+            <?php
+                wp_list_comments( array(
+                    'style'       => 'ol',
+                    'short_ping'  => true,
+                    'avatar_size' => 50,
+                ) );
+            ?>
+        </ol><!-- .comment-list -->
 
-		<?php
-		the_comments_pagination(
-			array(
-				'before_page_number' => esc_html__( 'Page', 'twentytwentyone' ) . ' ',
-				'mid_size'           => 0,
-				'prev_text'          => sprintf(
-					'%s <span class="nav-prev-text">%s</span>',
-					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ),
-					esc_html__( 'Older comments', 'twentytwentyone' )
-				),
-				'next_text'          => sprintf(
-					'<span class="nav-next-text">%s</span> %s',
-					esc_html__( 'Newer comments', 'twentytwentyone' ),
-					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' )
-				),
-			)
-		);
-		?>
+        <?php
+            // Are there comments to navigate through?
+            if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+        ?>
+        <nav class="navigation comment-navigation" role="navigation">
+            <h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'projectsengine' ); ?></h1>
+            <div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'projectsengine' ) ); ?></div>
+            <div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'projectsengine' ) ); ?></div>
+        </nav><!-- .comment-navigation -->
+        <?php endif; // Check for comment navigation ?>
 
-		<?php if ( ! comments_open() ) : ?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'twentytwentyone' ); ?></p>
-		<?php endif; ?>
-	<?php endif; ?>
+        <?php if ( ! comments_open() && get_comments_number() ) : ?>
+        <p class="no-comments"><?php _e( 'Comments are closed.' , 'projectsengine' ); ?></p>
+        <?php endif; ?>
 
-	<?php
-	comment_form(
-		array(
-			'title_reply'        => esc_html__( 'Leave a comment', 'twentytwentyone' ),
-			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-			'title_reply_after'  => '</h2>',
-		)
-	);
-	?>
+    <?php endif; // have_comments() ?>
+
+    <?php comment_form(); ?>
 
 </div><!-- #comments -->
